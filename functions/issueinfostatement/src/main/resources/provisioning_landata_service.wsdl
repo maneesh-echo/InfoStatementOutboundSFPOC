@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:i0="http://Portal1.landata.vic.gov.au/AgencyWebServices/1.10/Provisioning" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://Portal1.landata.vic.gov.au/AgencyWebservices/1.10" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" targetNamespace="http://Portal1.landata.vic.gov.au/AgencyWebservices/1.10" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Agency Web Services</wsdl:documentation>
+  <wsdl:import namespace="http://Portal1.landata.vic.gov.au/AgencyWebServices/1.10/Provisioning" location="./Provisioning_SAI.wsdl" />
+  <wsdl:types />
+  <wsdl:service name="ProvisioningLanData">
+    <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Agency Web Services</wsdl:documentation>
+    <wsdl:port name="Provisioning_1.10" binding="i0:Provisioning_1.10">
+      <soap:address location="https://www.test.landata.vic.gov.au/AgencyWebServices/1.10/provisioning.asmx" />
+    </wsdl:port>
+    <wsdl:port name="Provisioning_1.101" binding="i0:Provisioning_1.10">
+      <soap12:address location="https://www.test.landata.vic.gov.au/AgencyWebServices/1.10/provisioning.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

@@ -1,0 +1,120 @@
+<?xml version='1.0' encoding='UTF-8'?><!-- Published by JAX-WS RI at http://jax-ws.dev.java.net. 
+	RI's version is Metro/2.1 (branches/2.1-6728; 2011-02-03T14:14:58+0000) JAXWS-RI/2.2.3 
+	JAXWS/2.2. -->
+<definitions
+	xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:i0="http://Portal1.landata.vic.gov.au/AgencyWebServices/1.10/Provisioning"
+	xmlns="http://schemas.xmlsoap.org/wsdl/"
+	targetNamespace="http://Portal1.landata.vic.gov.au/AgencyWebServices/1.10/Provisioning">
+	<!-- <import namespace="http://Portal1.landata.vic.gov.au/AgencyWebServices/1.10/Provisioning" 
+		location="messagetypes.xsd" /> <types /> -->
+	<types>
+		<xs:schema
+			xmlns:tns="http://Portal1.landata.vic.gov.au/AgencyWebServices/1.10/Provisioning"
+			xmlns:xs="http://www.w3.org/2001/XMLSchema"
+			elementFormDefault="qualified"
+			targetNamespace="http://Portal1.landata.vic.gov.au/AgencyWebServices/1.10/Provisioning"
+			id="MessageTypes">
+			<xs:element name="CertificateProvision">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" maxOccurs="1"
+							name="custodianCertificate" type="xs:string" />
+						<xs:element minOccurs="0" maxOccurs="1"
+							name="custodianAttachment" type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="CertificateProvisionResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="1" maxOccurs="1"
+							name="CertificateProvisionResult" type="xs:int" />
+						<xs:element minOccurs="0" maxOccurs="1"
+							name="exception" type="tns:ArrayOfString" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:complexType name="ArrayOfString">
+				<xs:sequence>
+					<xs:element minOccurs="0" maxOccurs="unbounded"
+						name="string" nillable="true" type="xs:string" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:element name="CertificateStatusPush">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" maxOccurs="1"
+							name="custodianResponse" type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="CertificateStatusPushResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="1" maxOccurs="1"
+							name="CertificateStatusPushResult" type="xs:int" />
+						<xs:element minOccurs="0" maxOccurs="1"
+							name="exception" type="tns:ArrayOfString" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:schema>
+	</types>
+	<message name="CertificateProvisionSoapIn">
+		<part name="parameters" element="i0:CertificateProvision" />
+	</message>
+	<message name="CertificateProvisionSoapOut">
+		<part name="parameters" element="i0:CertificateProvisionResponse" />
+	</message>
+	<message name="CertificateStatusPushSoapIn">
+		<part name="parameters" element="i0:CertificateStatusPush" />
+	</message>
+	<message name="CertificateStatusPushSoapOut">
+		<part name="parameters"
+			element="i0:CertificateStatusPushResponse" />
+	</message>
+	<portType name="Provisioning_1.10">
+		<operation name="CertificateProvision">
+			<input message="i0:CertificateProvisionSoapIn" />
+			<output message="i0:CertificateProvisionSoapOut" />
+		</operation>
+		<operation name="CertificateStatusPush">
+			<input message="i0:CertificateStatusPushSoapIn" />
+			<output message="i0:CertificateStatusPushSoapOut" />
+		</operation>
+	</portType>
+	<binding name="Provisioning_1.10" type="i0:Provisioning_1.10">
+		<soap:binding
+			transport="http://schemas.xmlsoap.org/soap/http" style="document" />
+		<operation name="CertificateProvision">
+			<soap:operation
+				soapAction="http://Portal1.landata.vic.gov.au/AgencyWebservices/1.10/CertificateProvision"
+				style="document" />
+			<input>
+				<soap:body use="literal" />
+			</input>
+			<output>
+				<soap:body use="literal" />
+			</output>
+		</operation>
+		<operation name="CertificateStatusPush">
+			<soap:operation
+				soapAction="http://Portal1.landata.vic.gov.au/AgencyWebservices/1.10/CertificateStatusPush"
+				style="document" />
+			<input>
+				<soap:body use="literal" />
+			</input>
+			<output>
+				<soap:body use="literal" />
+			</output>
+		</operation>
+	</binding>
+	<service name="ProvisioningSAI">
+		<documentation xmlns="http://schemas.xmlsoap.org/wsdl/" />
+		<port name="Provisioning_1.10" binding="i0:Provisioning_1.10">
+			<soap:address
+				location="https://webservices.qa2.property.saiglobal.com/services/1.10/Provisioning" />
+		</port>
+	</service>
+</definitions>

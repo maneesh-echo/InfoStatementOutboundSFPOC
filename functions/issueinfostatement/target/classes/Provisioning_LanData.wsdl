@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://Portal1.landata.vic.gov.au/AgencyWebservices/1.10" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" targetNamespace="http://Portal1.landata.vic.gov.au/AgencyWebservices/1.10" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Agency Web Services</wsdl:documentation>
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://Portal1.landata.vic.gov.au/AgencyWebservices/1.10">
+      <s:element name="CertificateProvision">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="custodianCertificate" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="custodianAttachment" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="subject" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="issuer" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="serial" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="validTo" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CertificateProvisionResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="CertificateProvisionResult" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="exception" type="tns:ArrayOfString" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfString">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="string" nillable="true" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="CertificateStatusPush">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="custodianResponse" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="subject" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="issuer" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="serial" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="validTo" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CertificateStatusPushResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="CertificateStatusPushResult" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="exception" type="tns:ArrayOfString" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="CertificateProvisionSoapIn">
+    <wsdl:part name="parameters" element="tns:CertificateProvision" />
+  </wsdl:message>
+  <wsdl:message name="CertificateProvisionSoapOut">
+    <wsdl:part name="parameters" element="tns:CertificateProvisionResponse" />
+  </wsdl:message>
+  <wsdl:message name="CertificateStatusPushSoapIn">
+    <wsdl:part name="parameters" element="tns:CertificateStatusPush" />
+  </wsdl:message>
+  <wsdl:message name="CertificateStatusPushSoapOut">
+    <wsdl:part name="parameters" element="tns:CertificateStatusPushResponse" />
+  </wsdl:message>
+  <wsdl:portType name="Provisioning">
+    <wsdl:operation name="CertificateProvision">
+      <wsdl:input message="tns:CertificateProvisionSoapIn" />
+      <wsdl:output message="tns:CertificateProvisionSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CertificateStatusPush">
+      <wsdl:input message="tns:CertificateStatusPushSoapIn" />
+      <wsdl:output message="tns:CertificateStatusPushSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="Provisioning" type="tns:Provisioning">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="CertificateProvision">
+      <soap:operation soapAction="http://Portal1.landata.vic.gov.au/AgencyWebservices/1.10/CertificateProvision" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CertificateStatusPush">
+      <soap:operation soapAction="http://Portal1.landata.vic.gov.au/AgencyWebservices/1.10/CertificateStatusPush" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="Provisioning1" type="tns:Provisioning">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="CertificateProvision">
+      <soap12:operation soapAction="http://Portal1.landata.vic.gov.au/AgencyWebservices/1.10/CertificateProvision" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CertificateStatusPush">
+      <soap12:operation soapAction="http://Portal1.landata.vic.gov.au/AgencyWebservices/1.10/CertificateStatusPush" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ProvisioningLanData">
+    <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Agency Web Services</wsdl:documentation>
+    <wsdl:port name="Provisioning" binding="tns:Provisioning">
+      <soap:address location="https://www.test.landata.vic.gov.au/AgencyWebServices/1.10/provisioning.asmx" />
+    </wsdl:port>
+    <wsdl:port name="Provisioning1" binding="tns:Provisioning1">
+      <soap12:address location="https://www.test.landata.vic.gov.au/AgencyWebServices/1.10/provisioning.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
